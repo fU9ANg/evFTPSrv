@@ -1,0 +1,154 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+D2SINGLEFACTORY	d2SingleFactory.h	31;"	d
+D2TASKQUEUE	d2Task.h	/^typedef d2Queue <d2MemBlock*> D2TASKQUEUE;$/;"	t
+D2TASKQUEUE	d2ThreadPool.h	/^    typedef d2Queue<d2Task*> D2TASKQUEUE;$/;"	t	class:d2ThreadPool
+D2THREADLIST	d2ThreadPool.h	/^    typedef list <pthread_t> D2THREADLIST;$/;"	t	class:d2ThreadPool
+Execute	d2EvLoopTask.cpp	/^int d2EvLoopTask::Execute (void* data)$/;"	f	class:d2EvLoopTask
+Execute	d2FTPTask.cpp	/^int d2FTPTask::Execute (void* data)$/;"	f	class:d2FTPTask
+Execute	d2SendTask.cpp	/^int d2SendTask::Execute (void*)$/;"	f	class:d2SendTask
+LISTEN_QMAX	d2Define.h	37;"	d
+MAXFD	d2Define.h	35;"	d
+MEMBLOCKNUM	d2MemZone.h	12;"	d
+MEMBLOCKSIZE	d2MemBlock.h	11;"	d
+MSG_HEAD	d2Define.h	/^}   MSG_HEAD;$/;"	t	typeref:struct:sRecvData
+QUEUEBLOCK	d2MemZone.h	/^    typedef queue<T*> QUEUEBLOCK;$/;"	t	class:d2MemZone
+SIGINTERNAL	d2Define.h	38;"	d
+TIMEOUT	d2Define.h	36;"	d
+_D2_DEFINE_H	d2Define.h	7;"	d
+_D2_EVLOOPTASK_H	d2EvLoopTask.h	7;"	d
+_D2_FTPTASK_H	d2FTPTask.h	7;"	d
+_D2_MEMBLOCK_H	d2MemBlock.h	7;"	d
+_D2_MEMZONE_H	d2MemZone.h	7;"	d
+_D2_MUTEXLOCK_H	d2MutexLock.h	7;"	d
+_D2_QUEUE_H	d2Queue.h	7;"	d
+_D2_SENDTASK_H	d2SendTask.h	8;"	d
+_D2_SINGLEFACTORY	d2SingleFactory.h	7;"	d
+_D2_TASK_H	d2Task.h	7;"	d
+_D2_THREADPOOL_H	d2ThreadPool.h	7;"	d
+closeFd	d2EvLoopTask.cpp	/^void d2EvLoopTask::closeFd (int fd)$/;"	f	class:d2EvLoopTask
+d2EvLoopTask	d2EvLoopTask.cpp	/^d2EvLoopTask::d2EvLoopTask (string ip, int port)$/;"	f	class:d2EvLoopTask
+d2EvLoopTask	d2EvLoopTask.h	/^class d2EvLoopTask : public d2Task$/;"	c
+d2FTPTask	d2FTPTask.h	/^        d2FTPTask ()$/;"	f	class:d2FTPTask
+d2FTPTask	d2FTPTask.h	/^class d2FTPTask : public d2Task$/;"	c
+d2MemBlock	d2MemBlock.cpp	/^d2MemBlock::d2MemBlock (unsigned int iSize)$/;"	f	class:d2MemBlock
+d2MemBlock	d2MemBlock.h	/^class d2MemBlock$/;"	c
+d2MemZone	d2MemZone.h	/^        d2MemZone (int iCount = MEMBLOCKNUM)$/;"	f	class:d2MemZone
+d2MemZone	d2MemZone.h	/^class d2MemZone$/;"	c
+d2MutexLock	d2MutexLock.h	/^        d2MutexLock ()$/;"	f	class:d2MutexLock
+d2MutexLock	d2MutexLock.h	/^class d2MutexLock$/;"	c
+d2MutexLockGuard	d2MutexLock.h	/^        explicit d2MutexLockGuard (d2MutexLock& lock) : m_lock(lock)$/;"	f	class:d2MutexLockGuard
+d2MutexLockGuard	d2MutexLock.h	/^class d2MutexLockGuard$/;"	c
+d2Queue	d2Queue.h	/^        d2Queue (void)$/;"	f	class:d2Queue
+d2Queue	d2Queue.h	/^class d2Queue$/;"	c
+d2SendTask	d2SendTask.h	/^        d2SendTask ()$/;"	f	class:d2SendTask
+d2SendTask	d2SendTask.h	/^class d2SendTask : public d2Task$/;"	c
+d2SingleFactory	d2SingleFactory.cpp	/^d2SingleFactory::d2SingleFactory ()$/;"	f	class:d2SingleFactory
+d2SingleFactory	d2SingleFactory.h	/^class d2SingleFactory$/;"	c
+d2Task	d2Task.h	/^        d2Task () : m_AutoExit (true)$/;"	f	class:d2Task
+d2Task	d2Task.h	/^class d2Task$/;"	c
+d2ThreadPool	d2ThreadPool.h	/^        d2ThreadPool (unsigned int num) : m_threadCount(num)$/;"	f	class:d2ThreadPool
+d2ThreadPool	d2ThreadPool.h	/^class d2ThreadPool$/;"	c
+data	d2MemBlock.cpp	/^void* d2MemBlock::data (void)$/;"	f	class:d2MemBlock
+deLock	d2MutexLock.h	/^        void deLock (void)$/;"	f	class:d2MutexLock
+enLock	d2MutexLock.h	/^        void enLock (void)$/;"	f	class:d2MutexLock
+ev_io_info	d2EvLoopTask.h	/^typedef struct ev_io_info {$/;"	s
+ev_io_info	d2EvLoopTask.h	/^}   ev_io_info;$/;"	t	typeref:struct:ev_io_info
+fd	d2EvLoopTask.h	/^        struct ev_io*   fd;$/;"	m	struct:ev_io_info	typeref:struct:ev_io_info::ev_io
+free	d2MemZone.h	/^        bool free (T* t)$/;"	f	class:d2MemZone
+getClientCount	d2EvLoopTask.cpp	/^int d2EvLoopTask::getClientCount (void)$/;"	f	class:d2EvLoopTask
+getCount	d2MemZone.h	/^        int getCount (void)$/;"	f	class:d2MemZone
+getCount	d2Queue.h	/^        size_t getCount (void)$/;"	f	class:d2Queue
+getFd	d2MemBlock.cpp	/^int d2MemBlock::getFd (void)$/;"	f	class:d2MemBlock
+getIndex	d2MemBlock.cpp	/^unsigned int d2MemBlock::getIndex (void)$/;"	f	class:d2MemBlock
+getSize	d2MemBlock.cpp	/^unsigned int d2MemBlock::getSize (void)$/;"	f	class:d2MemBlock
+getTaskCount	d2ThreadPool.cpp	/^int d2ThreadPool::getTaskCount ()$/;"	f	class:d2ThreadPool
+getThreadCount	d2ThreadPool.cpp	/^int d2ThreadPool::getThreadCount ()$/;"	f	class:d2ThreadPool
+getUsedCount	d2MemZone.h	/^        int getUsedCount (void)$/;"	f	class:d2MemZone
+getUsedSize	d2MemBlock.cpp	/^unsigned int d2MemBlock::getUsedSize (void)$/;"	f	class:d2MemBlock
+handleAccept	d2EvLoopTask.cpp	/^void d2EvLoopTask::handleAccept (struct ev_loop* l, ev_io* w, int revents)$/;"	f	class:d2EvLoopTask
+handleRecv	d2EvLoopTask.cpp	/^void d2EvLoopTask::handleRecv (struct ev_loop* l, ev_io* w, int revents)$/;"	f	class:d2EvLoopTask
+handleTimeOut	d2EvLoopTask.cpp	/^void d2EvLoopTask::handleTimeOut(struct ev_loop* l, struct ev_timer* t, int revents)$/;"	f	class:d2EvLoopTask
+iLen	d2Define.h	/^    unsigned int iLen;$/;"	m	struct:sRecvData
+inQueue	d2Queue.h	/^        bool inQueue (TYPE t)$/;"	f	class:d2Queue
+initInetAddr	d2EvLoopTask.cpp	/^int d2EvLoopTask::initInetAddr (void)$/;"	f	class:d2EvLoopTask
+initThreads	d2ThreadPool.cpp	/^bool d2ThreadPool::initThreads ()$/;"	f	class:d2ThreadPool
+instance	d2SingleFactory.cpp	/^class d2SingleFactory* d2SingleFactory::instance ()$/;"	f	class:d2SingleFactory
+isAutoExit	d2Task.h	/^        bool isAutoExit (void)$/;"	f	class:d2Task
+isUsed	d2MemBlock.cpp	/^bool d2MemBlock::isUsed (void)$/;"	f	class:d2MemBlock
+joinTask	d2ThreadPool.cpp	/^bool d2ThreadPool::joinTask (d2Task* t)$/;"	f	class:d2ThreadPool
+killAll	d2ThreadPool.cpp	/^int d2ThreadPool::killAll (void)$/;"	f	class:d2ThreadPool
+lasttime	d2EvLoopTask.h	/^        ev_tstamp       lasttime;$/;"	m	struct:ev_io_info
+m_AutoExit	d2Task.h	/^        bool m_AutoExit;$/;"	m	class:d2Task
+m_Ip	d2EvLoopTask.h	/^        string m_Ip;$/;"	m	class:d2EvLoopTask
+m_Loop	d2EvLoopTask.cpp	/^struct ev_loop* d2EvLoopTask::m_Loop = NULL;$/;"	m	class:d2EvLoopTask	typeref:struct:d2EvLoopTask::	file:
+m_Loop	d2EvLoopTask.h	/^        static struct ev_loop* m_Loop;$/;"	m	class:d2EvLoopTask	typeref:struct:d2EvLoopTask::ev_loop
+m_Port	d2EvLoopTask.h	/^        int m_Port;$/;"	m	class:d2EvLoopTask
+m_TaskQueue	d2EvLoopTask.cpp	/^D2TASKQUEUE d2EvLoopTask::m_TaskQueue;$/;"	m	class:d2EvLoopTask	file:
+m_TaskQueue	d2EvLoopTask.h	/^        static D2TASKQUEUE m_TaskQueue;$/;"	m	class:d2EvLoopTask
+m_TaskQueue	d2FTPTask.cpp	/^D2TASKQUEUE d2FTPTask::m_TaskQueue;$/;"	m	class:d2FTPTask	file:
+m_TaskQueue	d2FTPTask.h	/^        static D2TASKQUEUE m_TaskQueue;$/;"	m	class:d2FTPTask
+m_TaskQueue	d2SendTask.h	/^        static D2TASKQUEUE m_TaskQueue;$/;"	m	class:d2SendTask
+m_blockCount	d2MemZone.h	/^        int          m_blockCount;$/;"	m	class:d2MemZone
+m_clientCount	d2EvLoopTask.cpp	/^int d2EvLoopTask::m_clientCount = 0;$/;"	m	class:d2EvLoopTask	file:
+m_clientCount	d2EvLoopTask.h	/^        static int  m_clientCount;$/;"	m	class:d2EvLoopTask
+m_cond	d2Queue.h	/^        pthread_cond_t  m_cond;$/;"	m	class:d2Queue
+m_fd	d2MemBlock.h	/^        int             m_fd;$/;"	m	class:d2MemBlock
+m_index	d2MemBlock.h	/^        int             m_index;$/;"	m	class:d2MemBlock
+m_ioArray	d2EvLoopTask.cpp	/^struct ev_io_info d2EvLoopTask::m_ioArray[MAXFD];$/;"	m	class:d2EvLoopTask	typeref:struct:d2EvLoopTask::	file:
+m_ioArray	d2EvLoopTask.h	/^        static struct ev_io_info m_ioArray[MAXFD];$/;"	m	class:d2EvLoopTask	typeref:struct:d2EvLoopTask::ev_io_info
+m_isExit	d2ThreadPool.h	/^        bool            m_isExit;$/;"	m	class:d2ThreadPool
+m_isUsed	d2MemBlock.h	/^        bool            m_isUsed;$/;"	m	class:d2MemBlock
+m_listenFd	d2EvLoopTask.h	/^        int m_listenFd;$/;"	m	class:d2EvLoopTask
+m_lock	d2MutexLock.h	/^        d2MutexLock& m_lock;$/;"	m	class:d2MutexLockGuard
+m_memPtr	d2MemBlock.h	/^        void*           m_memPtr;$/;"	m	class:d2MemBlock
+m_memZone	d2SingleFactory.h	/^        d2MemZone <d2MemBlock > m_memZone;$/;"	m	class:d2SingleFactory
+m_mutex	d2MutexLock.h	/^        pthread_mutex_t m_mutex;$/;"	m	class:d2MutexLock
+m_mutex	d2Queue.h	/^        pthread_mutex_t m_mutex;$/;"	m	class:d2Queue
+m_mutexLock	d2MemZone.h	/^        d2MutexLock  m_mutexLock;$/;"	m	class:d2MemZone
+m_mutexLock	d2ThreadPool.h	/^        d2MutexLock     m_mutexLock;$/;"	m	class:d2ThreadPool
+m_queue	d2Queue.h	/^        queue<TYPE>     m_queue;$/;"	m	class:d2Queue
+m_queueBlock	d2MemZone.h	/^        QUEUEBLOCK   m_queueBlock;$/;"	m	class:d2MemZone
+m_recvQueue	d2SingleFactory.h	/^        D2TASKQUEUE m_recvQueue;$/;"	m	class:d2SingleFactory
+m_sendQueue	d2SingleFactory.h	/^        D2TASKQUEUE m_sendQueue;$/;"	m	class:d2SingleFactory
+m_size	d2MemBlock.h	/^        unsigned int    m_size;$/;"	m	class:d2MemBlock
+m_staticObject	d2SingleFactory.cpp	/^class d2SingleFactory* d2SingleFactory::m_staticObject = NULL;$/;"	m	class:d2SingleFactory	typeref:class:d2SingleFactory::	file:
+m_staticObject	d2SingleFactory.h	/^        static class d2SingleFactory* m_staticObject;$/;"	m	class:d2SingleFactory	typeref:class:d2SingleFactory::d2SingleFactory
+m_taskQueue	d2ThreadPool.h	/^        D2TASKQUEUE     m_taskQueue;$/;"	m	class:d2ThreadPool
+m_threadCount	d2ThreadPool.h	/^        unsigned int    m_threadCount;$/;"	m	class:d2ThreadPool
+m_threadList	d2ThreadPool.h	/^        D2THREADLIST    m_threadList;$/;"	m	class:d2ThreadPool
+m_usedSize	d2MemBlock.h	/^        unsigned int    m_usedSize;$/;"	m	class:d2MemBlock
+main	Main.cpp	/^int main (int argc, char** argv)$/;"	f
+malloc	d2MemZone.h	/^        T* malloc (void)$/;"	f	class:d2MemZone
+outQueue	d2Queue.h	/^        bool outQueue (TYPE& out, unsigned int iTimeOut)$/;"	f	class:d2Queue
+pData	d2Define.h	/^    void* pData () {$/;"	f	struct:sRecvData
+reSet	d2MemBlock.cpp	/^void d2MemBlock::reSet (void)$/;"	f	class:d2MemBlock
+reSize	d2ThreadPool.cpp	/^bool d2ThreadPool::reSize (unsigned int num)$/;"	f	class:d2ThreadPool
+runAll	d2ThreadPool.cpp	/^bool d2ThreadPool::runAll ()$/;"	f	class:d2ThreadPool
+sRecvData	d2Define.h	/^typedef struct sRecvData$/;"	s
+setFd	d2MemBlock.cpp	/^void d2MemBlock::setFd(int fd)$/;"	f	class:d2MemBlock
+setIndex	d2MemBlock.cpp	/^void d2MemBlock::setIndex (unsigned int i)$/;"	f	class:d2MemBlock
+setIsUsed	d2MemBlock.cpp	/^void d2MemBlock::setIsUsed (bool b)$/;"	f	class:d2MemBlock
+setNodelay	d2EvLoopTask.cpp	/^void d2EvLoopTask::setNodelay (int fd)$/;"	f	class:d2EvLoopTask
+setNonBlock	d2EvLoopTask.cpp	/^void d2EvLoopTask::setNonBlock (int fd)$/;"	f	class:d2EvLoopTask
+setReuseAddr	d2EvLoopTask.cpp	/^void d2EvLoopTask::setReuseAddr(int fd)$/;"	f	class:d2EvLoopTask
+setSize	d2MemBlock.cpp	/^void d2MemBlock::setSize (unsigned int i)$/;"	f	class:d2MemBlock
+sig1	Main.cpp	/^void sig1 (int sig)$/;"	f
+sigHandler	d2ThreadPool.cpp	/^void d2ThreadPool::sigHandler (int sig)$/;"	f	class:d2ThreadPool
+stopPool	d2ThreadPool.cpp	/^bool d2ThreadPool::stopPool (void)$/;"	f	class:d2ThreadPool
+threadFunc	d2ThreadPool.cpp	/^void* d2ThreadPool::threadFunc (void* data)$/;"	f	class:d2ThreadPool
+~d2EvLoopTask	d2EvLoopTask.cpp	/^d2EvLoopTask::~d2EvLoopTask ()$/;"	f	class:d2EvLoopTask
+~d2FTPTask	d2FTPTask.h	/^        ~d2FTPTask () {};$/;"	f	class:d2FTPTask
+~d2MemBlock	d2MemBlock.cpp	/^d2MemBlock::~d2MemBlock (void)$/;"	f	class:d2MemBlock
+~d2MemZone	d2MemZone.h	/^        ~d2MemZone (void)$/;"	f	class:d2MemZone
+~d2MutexLock	d2MutexLock.h	/^        ~d2MutexLock ()$/;"	f	class:d2MutexLock
+~d2MutexLockGuard	d2MutexLock.h	/^        ~d2MutexLockGuard (void)$/;"	f	class:d2MutexLockGuard
+~d2Queue	d2Queue.h	/^        ~d2Queue (void)$/;"	f	class:d2Queue
+~d2SendTask	d2SendTask.h	/^        ~d2SendTask () {};$/;"	f	class:d2SendTask
+~d2SingleFactory	d2SingleFactory.cpp	/^d2SingleFactory::~d2SingleFactory ()$/;"	f	class:d2SingleFactory
+~d2Task	d2Task.h	/^        virtual ~d2Task () {};$/;"	f	class:d2Task
+~d2ThreadPool	d2ThreadPool.h	/^        ~d2ThreadPool ()$/;"	f	class:d2ThreadPool

@@ -1,20 +1,21 @@
 
+#
 # CMakeLists.txt
+#
+# fU9ANg (bb.newlife@gmail.com)
+# 
 
 cmake_minimum_required (VERSION 2.8)
 project (evFTPSrv)
 
 SET (CMAKE_CXX_FLAGS_DEBUG " -O0 -Wall -Werror -g -ggdb")
-SET (CMAKE_C_FLAGS_DEBUG " -O0 -Wall -Werror -g -ggdb")
+SET (CMAKE_C_FLAGS_DEBUG   " -O0 -Wall -Werror -g -ggdb")
 SET (CMAKE_BUILD_TYPE Debug)
 
-
-SET (CMAKE_CXX_COMPILER "ccache")
+SET (CMAKE_CXX_COMPILER   "ccache")
 SET (CMAKE_CXX_COMPILER_ARG1 "g++")
-
-
-SET (CMAKE_C_COMPILER "ccache")
-SET (CMAKE_C_COMPILER_ARG1 "gcc")
+SET (CMAKE_C_COMPILER     "ccache")
+SET (CMAKE_C_COMPILER_ARG1   "gcc")
 
 INCLUDE_DIRECTORIES (
     .
@@ -31,7 +32,9 @@ SET (SRC_LIST
 )
 
 SET (EXTRA_LIBS
-    -lpthread -lrt -lev
+   -lpthread
+   -lrt
+   -lev
 )
 
 add_executable (evFTPSrv ${SRC_LIST})
