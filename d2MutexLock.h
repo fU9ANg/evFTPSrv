@@ -19,7 +19,6 @@ class d2MutexLock
         */
         d2MutexLock ()
         {
-            cout << "d2MutexLock ()" << endl;
             pthread_mutex_init (&m_mutex, NULL);
         }
 
@@ -30,7 +29,6 @@ class d2MutexLock
         */
         ~d2MutexLock ()
         {
-            cout << "~d2MutexLock ()" << endl;
             pthread_mutex_destroy (&m_mutex);
         }
 
@@ -41,7 +39,6 @@ class d2MutexLock
         */
         void enLock (void)
         {
-            cout << "enLock" << endl;
             pthread_mutex_lock (&m_mutex);
         }
 
@@ -52,7 +49,6 @@ class d2MutexLock
         */
         void deLock (void)
         {
-            cout << "deLock" << endl;
             pthread_mutex_unlock (&m_mutex);
         }
 
@@ -73,7 +69,6 @@ class d2MutexLockGuard
         */
         explicit d2MutexLockGuard (d2MutexLock& lock) : m_lock(lock)
         {
-            cout << "d2MutexLockGuard ()" << endl;
             m_lock.enLock ();
         }
 
@@ -84,7 +79,6 @@ class d2MutexLockGuard
         */
         ~d2MutexLockGuard (void)
         {
-            cout << "~d2MutexLockGuard ()" << endl;
             m_lock.deLock ();
         }
 

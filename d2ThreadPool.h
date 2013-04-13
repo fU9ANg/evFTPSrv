@@ -22,9 +22,11 @@ class d2ThreadPool
         {
             m_isExit = false;
         }
+
         ~d2ThreadPool ()
         {
         }
+
         bool initThreads (void);
         bool runAll (void);
         bool joinTask (d2Task* t);

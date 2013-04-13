@@ -42,20 +42,19 @@ class d2Queue
         bool inQueue (TYPE t)
         {
             pthread_mutex_lock (&m_mutex);
-            cout << "=========" << endl << "in Queue: " << pthread_self () << endl;
-            if (m_queue.empty ()) {
-                cout << "in Queue_send_siganl() : " << pthread_self () << endl;
+            if (m_queue.empty ())
+            {
                 m_queue.push (t);
-                cout << "===========" << endl;
                 pthread_mutex_unlock (&m_mutex);
                 pthread_cond_signal (&m_cond);
             }
-            else {
-                cout << "in Queue_!empty() : " << pthread_self () <<endl<<"=========="<< endl;
+            else
+            {
                 m_queue.push (t);
                 pthread_mutex_unlock (&m_mutex);
             }
-            return true;
+
+            return (true);
         }
 
         /*
@@ -69,22 +68,19 @@ class d2Queue
             t.tv_sec = time (NULL) + iTimeOut;
             t.tv_nsec = 0;
             pthread_mutex_lock (&m_mutex);
-            cout << "-------------" << endl << "outQueue: " << pthread_self () << endl;
-            while (m_queue.empty ()) {
-                cout << "outQueue.empty(): " << pthread_self () << endl;
-                if (pthread_cond_timedwait (&m_cond, &m_mutex, &t) != 0) {
-                    cout << "timewait" << endl << "-------------" << endl;
+            while (m_queue.empty ())
+            {
+                if (pthread_cond_timedwait (&m_cond, &m_mutex, &t) != 0)
+                {
                     pthread_mutex_unlock (&m_mutex);
-                    return false;
+                    return (false);
                 }
             }
             out = m_queue.front ();
             m_queue.pop ();
-            cout << "outQueue.get_task: " << pthread_self () << endl <<
-                    "---------------" << endl;
             pthread_mutex_unlock (&m_mutex);
 
-            return true;
+            return (true);
         }
 
         /*

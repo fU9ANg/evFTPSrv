@@ -10,20 +10,24 @@ using namespace std;
 
 bool d2ThreadPool::initThreads ()
 {
-    for (unsigned int i=0; i<m_threadCount; i++) {
+    for (unsigned int i=0; i<m_threadCount; i++)
+    {
         pthread_t id = 0;
         pthread_create (&id, 0, d2ThreadPool::threadFunc, this);
         m_threadList.push_back (id);
     }
-    return true;
+
+    return (true);
 }
 
 bool d2ThreadPool::reSize (unsigned int num)
 {
     d2MutexLockGuard guard (m_mutexLock);
     int count = (int) (num-m_threadCount);
-    if (count > 0) {
-        for (int i=0; i<count; ++i) {
+    if (count > 0)
+    {
+        for (int i=0; i<count; ++i)
+        {
             cout << i << ":::reSize of thread list:::" << count << endl;
             pthread_t id = 0;
             pthread_create (&id, 0, d2ThreadPool::threadFunc, this);
@@ -31,7 +35,8 @@ bool d2ThreadPool::reSize (unsigned int num)
         }
     }
     m_threadCount = num;
-    return true;
+
+    return (true);
 }
 
 bool d2ThreadPool::runAll ()
@@ -41,7 +46,7 @@ bool d2ThreadPool::runAll ()
 
 bool d2ThreadPool::joinTask (d2Task* t)
 {
-    return this->m_taskQueue.inQueue (t);
+    return (this->m_taskQueue.inQueue (t));
 }
 
 void* d2ThreadPool::threadFunc (void* data)
@@ -50,23 +55,27 @@ void* d2ThreadPool::threadFunc (void* data)
     (void)signal (SIGINTERNAL, d2ThreadPool::sigHandler);
     d2ThreadPool* tp = static_cast<d2ThreadPool*> (data);
     d2Task* t = NULL;
-    while (!tp->m_isExit) {
+    while (!tp->m_isExit)
+    {
         if (tp->m_taskQueue.outQueue (t, 2) == true && t)
         {
             t->Execute (NULL);
-            if (t->isAutoExit ()) {
+            if (t->isAutoExit ())
+            {
                 delete t;
                 t = NULL;
             }
         }
 #if 1
-        else {
+        else
+        {
             d2MutexLockGuard* guard = new d2MutexLockGuard (tp->m_mutexLock);
-            if (tp->m_threadCount < tp->m_threadList.size ()) {
+            if (tp->m_threadCount < tp->m_threadList.size ())
+            {
                 cout << "...........................................:" << pthread_self () << endl;
                 tp->m_threadList.remove (pthread_self ());
                 delete guard;
-                return NULL;
+                return (NULL);
             }
             delete guard;
         }
@@ -74,8 +83,9 @@ void* d2ThreadPool::threadFunc (void* data)
     }
     d2MutexLockGuard guard (tp->m_mutexLock);
     tp->m_threadList.remove (pthread_self ());
-    return NULL;
+    return (NULL);
 }
+
 bool d2ThreadPool::stopPool (void)
 {
     m_isExit = true;
@@ -83,28 +93,36 @@ bool d2ThreadPool::stopPool (void)
     {
         usleep (100);
     }
-    return false;
+
+    return (false);
 }
+
 int d2ThreadPool::killAll (void)
 {
     d2MutexLockGuard guard (this->m_mutexLock);
-    while (getThreadCount() != 0) {
+    while (getThreadCount() != 0)
+    {
         pthread_kill (m_threadList.front (), SIGINTERNAL);
         m_threadList.pop_front ();
     }
+
     return (0);
 }
+
 void d2ThreadPool::sigHandler (int sig)
 {
-    printf ("[%ld]exit\n", pthread_self ());
+    printf ("pthread id=[%ld] exit\n", pthread_self ());
     pthread_exit (NULL);
+
     return;
 }
+
 int d2ThreadPool::getThreadCount ()
 {
     d2MutexLockGuard guard (m_mutexLock);
     return (m_threadList.size ());
 }
+
 int d2ThreadPool::getTaskCount ()
 {
     return (m_taskQueue.getCount ());

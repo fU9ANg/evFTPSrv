@@ -22,7 +22,8 @@ d2EvLoopTask::d2EvLoopTask (string ip, int port)
     m_Ip   = ip;
     m_Port = port;
 
-    if ((m_listenFd = socket (AF_INET, SOCK_STREAM, 0)) < 0) {
+    if ((m_listenFd = socket (AF_INET, SOCK_STREAM, 0)) < 0)
+    {
         cout << "ERROR: in socket ()\n";
         return;
     }
@@ -32,7 +33,9 @@ d2EvLoopTask::d2EvLoopTask (string ip, int port)
     d2EvLoopTask::setReuseAddr(m_listenFd);
 
     for (int i=0; i<MAXFD; ++i)
+    {
         d2EvLoopTask::m_ioArray[i].fd = NULL;
+    }
 }
 
 /*
@@ -42,7 +45,8 @@ d2EvLoopTask::d2EvLoopTask (string ip, int port)
 */
 d2EvLoopTask::~d2EvLoopTask ()
 {
-    for (register int i=0; i<MAXFD; i++) {
+    for (register int i=0; i<MAXFD; i++)
+    {
         d2EvLoopTask::closeFd (i);
     }
 
@@ -87,7 +91,8 @@ void d2EvLoopTask::handleAccept (struct ev_loop* l, ev_io* w, int revents)
     int newFd = 0;
 
     newFd = accept (w->fd, (struct sockaddr*)&clientAddr, &sockLen);
-    if (newFd < 0) {
+    if (newFd < 0)
+    {
         cout << "ERROR: in accept ()\n";
         return;
     }
@@ -116,7 +121,6 @@ void d2EvLoopTask::handleRecv (struct ev_loop* l, ev_io* w, int revents)
     if (block == NULL)
     {
         cout << "MALLOC-ERROR: out of memory" << endl;
-        usleep (100);
         return;
     }
 
@@ -129,6 +133,8 @@ void d2EvLoopTask::handleRecv (struct ev_loop* l, ev_io* w, int revents)
     {
         cout << "[Warning]: Packet header length-" << sizeof (int) \
              << ", actually received length-" << recv_len <<endl;
+        block->reSet ();
+        D2SINGLEFACTORY->m_memZone.free (block);
         d2EvLoopTask::closeFd(w->fd);
         return;
     }
@@ -140,6 +146,8 @@ void d2EvLoopTask::handleRecv (struct ev_loop* l, ev_io* w, int revents)
     {
         cout << "FD=" << w->fd << ": length=" << *len - sizeof (int) << \
                 ", actually recviced length=" << recv_len << endl;
+        block->reSet ();
+        D2SINGLEFACTORY->m_memZone.free (block);
         d2EvLoopTask::closeFd (w->fd);
         return;
     }
@@ -211,7 +219,8 @@ void d2EvLoopTask::setNodelay (int fd)
 */
 void d2EvLoopTask::closeFd (int fd)
 {
-    if (fd) {
+    if (fd)
+    {
         close (fd);
         ev_io_stop (m_Loop, d2EvLoopTask::m_ioArray[fd].fd);
         free (d2EvLoopTask::m_ioArray[fd].fd);
@@ -243,7 +252,8 @@ int d2EvLoopTask::initInetAddr (void)
     servAddr.sin_addr.s_addr = inet_addr (m_Ip.c_str());
 
     if (bind (m_listenFd, (struct sockaddr*)&servAddr, \
-        sizeof (struct sockaddr)) < 0) {
+        sizeof (struct sockaddr)) < 0)
+    {
         abort ();
         return (-1);
     }

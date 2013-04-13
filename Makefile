@@ -55,4 +55,4 @@ evFTPClient:$(CLIENTOBJS)
 
 .PHONY: clean
 clean:
-	-rm -rf $(OBJS) $(BIN) *~
+	-rm -rf $(OBJS) $(CLIENTOBJS) $(BIN) *~

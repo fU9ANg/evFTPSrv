@@ -9,7 +9,7 @@
 #include "d2Define.h"
 #include "d2MutexLock.h"
 
-#define MEMBLOCKNUM     128
+#define MEMBLOCKNUM     2048
 
 template <typename T>
 class d2MemZone
@@ -24,11 +24,10 @@ class d2MemZone
         */
         d2MemZone (int iCount = MEMBLOCKNUM)
         {
-            cout << "d2MemZone" << endl;
-            getchar();
             d2MutexLockGuard guard (m_mutexLock);
             this->m_blockCount = iCount;
-            for (int i=0; i<this->m_blockCount; i++) {
+            for (int i=0; i<this->m_blockCount; i++)
+            {
                 T* t = new T;
                 m_queueBlock.push (t);
             }
@@ -42,7 +41,8 @@ class d2MemZone
         ~d2MemZone (void)
         {
             d2MutexLockGuard guard (m_mutexLock);
-            for (int i=0; i<this->m_blockCount; i++) {
+            for (int i=0; i<this->m_blockCount; i++)
+            {
                 T* t = m_queueBlock.front ();
                 m_queueBlock.pop ();
                 delete t;
@@ -58,10 +58,12 @@ class d2MemZone
         {
             d2MutexLockGuard guard (m_mutexLock);
             if (m_queueBlock.size () == 0)
-                return NULL;
+            {
+                return (NULL);
+            }
             T* p = m_queueBlock.front ();
             m_queueBlock.pop ();
-            return p;
+            return (p);
         }
 
         /*
@@ -73,10 +75,10 @@ class d2MemZone
         {
             d2MutexLockGuard guard (m_mutexLock);
             if (t == NULL) {
-                return false;
+                return (false);
             }
             m_queueBlock.push (t);
-            return true;
+            return (true);
         }
 
         /*
@@ -86,7 +88,7 @@ class d2MemZone
         */
         int getCount (void)
         {
-            return m_blockCount;
+            return (m_blockCount);
         }
 
         /*
@@ -97,8 +99,8 @@ class d2MemZone
         int getUsedCount (void)
         {
             d2MutexLockGuard guard (m_mutexLock);
-            return m_blockCount - \
-                   m_queueBlock.size ();
+            return (m_blockCount - \
+                    m_queueBlock.size ());
         }
 
     private:

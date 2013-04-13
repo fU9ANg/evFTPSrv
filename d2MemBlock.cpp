@@ -23,7 +23,8 @@ d2MemBlock::d2MemBlock (unsigned int iSize)
 */
 d2MemBlock::~d2MemBlock (void)
 {
-    if (m_memPtr) {
+    if (m_memPtr)
+    {
         free (m_memPtr);
         m_memPtr = NULL;
     }
@@ -46,7 +47,7 @@ void d2MemBlock::setSize (unsigned int i)
 */
 unsigned int d2MemBlock::getSize (void)
 {
-    return m_size;
+    return (m_size);
 }
 
 /*
@@ -56,7 +57,7 @@ unsigned int d2MemBlock::getSize (void)
 */
 unsigned int d2MemBlock::getUsedSize (void)
 {
-    return m_usedSize;
+    return (m_usedSize);
 }
 
 /*
@@ -76,7 +77,7 @@ void d2MemBlock::reSet (void)
 */
 void* d2MemBlock::data (void)
 {
-    return m_memPtr;
+    return (m_memPtr);
 }
 
 /*
@@ -86,7 +87,7 @@ void* d2MemBlock::data (void)
 */
 unsigned int d2MemBlock::getIndex (void)
 {
-    return m_index;
+    return (m_index);
 }
 
 /*
@@ -96,7 +97,7 @@ unsigned int d2MemBlock::getIndex (void)
 */
 bool d2MemBlock::isUsed (void)
 {
-    return m_isUsed;
+    return (m_isUsed);
 }
 
 /*
@@ -126,7 +127,7 @@ void d2MemBlock::setIsUsed (bool b)
 */
 int d2MemBlock::getFd (void)
 {
-    return m_fd;
+    return (m_fd);
 }
 
 /*

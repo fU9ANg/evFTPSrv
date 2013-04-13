@@ -19,12 +19,14 @@ class d2Task
         d2Task () : m_AutoExit (true)
         {
         }
+
         virtual ~d2Task () {};
         virtual int Execute (void* data) = 0;
         bool isAutoExit (void)
         {
             return m_AutoExit;
         }
+
     private:
         bool m_AutoExit;
         

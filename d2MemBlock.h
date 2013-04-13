@@ -8,7 +8,7 @@
 
 #include "d2Define.h"
 
-#define MEMBLOCKSIZE    2048
+#define MEMBLOCKSIZE    1500
 
 class d2MemBlock
 {

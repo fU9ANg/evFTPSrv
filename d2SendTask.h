@@ -17,6 +17,7 @@ class d2SendTask : public d2Task
         d2SendTask ()
         {
         }
+
         ~d2SendTask () {};
         virtual int Execute (void* data);
 

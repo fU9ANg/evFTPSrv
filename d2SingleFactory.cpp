@@ -11,7 +11,9 @@ class d2SingleFactory* d2SingleFactory::m_staticObject = NULL;
 class d2SingleFactory* d2SingleFactory::instance ()
 {
     if (m_staticObject == NULL)
+    {
         m_staticObject = new d2SingleFactory ();
+    }
 
     return m_staticObject;
 }

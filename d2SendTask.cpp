@@ -13,7 +13,8 @@ int d2SendTask::Execute (void*)
     while (true)
     {
         d2MemBlock* block;
-        if (D2SINGLEFACTORY->m_sendQueue.outQueue (block, 2) == false) {
+        if (D2SINGLEFACTORY->m_sendQueue.outQueue (block, 2) == false)
+        {
             continue;
         }
 
@@ -31,16 +32,19 @@ int d2SendTask::Execute (void*)
                 if (written_bytes < 0) written_bytes = 0;
                 continue;
             }
+
             if (errno == EAGAIN)
             {
                 if (written_bytes < 0) written_bytes = 0;
                 usleep (200);
                 continue;
             }
+
             else
             {
                 break;
             }
+
             ptr += written_bytes;
             left_bytes -= written_bytes;
         }
@@ -51,5 +55,5 @@ int d2SendTask::Execute (void*)
         D2SINGLEFACTORY->m_memZone.free (block);
     }
 
-    return 0;
+    return (0);
 }

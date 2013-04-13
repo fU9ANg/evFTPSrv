@@ -17,7 +17,8 @@ int d2FTPTask::Execute (void* data)
     {
         d2MemBlock* block = NULL;
 
-        if (D2SINGLEFACTORY->m_recvQueue.outQueue (block, 2) == false) {
+        if (D2SINGLEFACTORY->m_recvQueue.outQueue (block, 2) == false)
+        {
             continue;
         }
 
@@ -34,7 +35,8 @@ int d2FTPTask::Execute (void* data)
         //
 #if 0
         d2MemBlock* pblock = D2SINGLEFACTORY->m_memZone.malloc ();
-        if (pblock == NULL) {
+        if (pblock == NULL)
+        {
             cout << "d2FTPTask::Execute: out of memory\n";
             return -1;
         }

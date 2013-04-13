@@ -25,10 +25,10 @@ int main (int argc, char** argv)
     signal (SIGTERM, sig1);
 
 #if 1
-    d2ThreadPool* pool = new d2ThreadPool(100);
+    d2ThreadPool* pool = new d2ThreadPool(3);
     pool->runAll ();
 
-    d2EvLoopTask *    evLoopTask = new d2EvLoopTask ("127.0.0.1", 2300);
+    d2EvLoopTask *    evLoopTask = new d2EvLoopTask ("127.0.0.1", 9999);
     d2FTPTask *       ftpTask    = new d2FTPTask ();
     d2SendTask *      sendTask   = new d2SendTask ();
 
@@ -42,9 +42,10 @@ int main (int argc, char** argv)
     while (true)
     {
         cout << "<<<<<<< main loop >>>>>>>" << endl;
-        sleep (3);
+        sleep (5);
     }
     pool->killAll ();
 #endif
+
     return (0);
 }
