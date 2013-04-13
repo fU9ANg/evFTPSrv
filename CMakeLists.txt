@@ -8,8 +8,8 @@
 cmake_minimum_required (VERSION 2.8)
 project (evFTPSrv)
 
-SET (CMAKE_CXX_FLAGS_DEBUG " -O0 -Wall -Werror -g -ggdb")
-SET (CMAKE_C_FLAGS_DEBUG   " -O0 -Wall -Werror -g -ggdb")
+SET (CMAKE_CXX_FLAGS_DEBUG " -O0 -Wall -Werror -g -ggdb -D_ONLY_TEST")
+SET (CMAKE_C_FLAGS_DEBUG   " -O0 -Wall -Werror -g -ggdb -D_ONLY_TEST")
 SET (CMAKE_BUILD_TYPE Debug)
 
 SET (CMAKE_CXX_COMPILER   "ccache")

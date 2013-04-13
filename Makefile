@@ -25,7 +25,7 @@ OBJS        = d2FTPTask.o       \
               Main.o
 
 # Options for development
-CFLAGS      = -Wall -Werror -g
+CFLAGS      = -Wall -Werror -g -D_ONLY_TEST
 
 # Options for release
 #CFLAGS  = -O3 -Wall -Werror
