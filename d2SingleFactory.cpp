@@ -66,5 +66,42 @@ int d2SingleFactory::sendData (int fd, void* buffer, unsigned int len)
     if (buffer == NULL)
         return (-1);
 
+    int bytes_left = len;
+    int written_bytes;
+    char* ptr = (char*) buffer;
+
+    while (bytes_left > 0)
+    {
+        written_bytes = send (fd, ptr, bytes_left, 0);
+        if (written_bytes <= 0)
+        {
+            if (errno == EINTR)
+            {
+                if (written_bytes < 0)
+                {
+                    written_bytes = 0;
+                    usleep (100);
+                    continue;
+                }
+            }
+            else if (errno == EAGAIN)
+            {
+                if (written_bytes < 0)
+                {
+                    written_bytes = 0;
+                    usleep (100);
+                    continue;
+                }
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        bytes_left -= written_bytes;
+        ptr += written_bytes;
+    }
+
     return (0);
 }
