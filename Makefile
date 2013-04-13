@@ -24,8 +24,11 @@ OBJS        = d2FTPTask.o       \
               d2SingleFactory.o \
               Main.o
 
+CLIENTOBJS  = client.o
+
 # Options for development
 CFLAGS      = -Wall -Werror -g -D_ONLY_TEST
+CXXFLAGS    = -Wall -Werror -g -D_ONLY_TEST
 
 # Options for release
 #CFLAGS  = -O3 -Wall -Werror
@@ -38,8 +41,11 @@ LIB_PATH    = -L.
 
 all:$(BIN)
 
-$(BIN):$(OBJS)
-	$(CPP) $(CFLAGS) $(INCS) -o $@ $(OBJS) $(LIB_PATH) $(LIBS)
+evFTPSrv:$(OBJS)
+	$(CPP) $(CXXFLAGS) $(INCS) -o $@ $(OBJS) $(LIB_PATH) $(LIBS)
+
+evFTPClient:$(CLIENTOBJS)
+	$(CC)  $(CFLAGS)   $(INCS) -o $@ $(CLIENTOBJS) $(LIB_PATH) $(LIBS)
 
 %.o:%.cpp
 	$(CPP) $(CFLAGS) $(INCS) -o $@ -c $<
@@ -49,4 +55,4 @@ $(BIN):$(OBJS)
 
 .PHONY: clean
 clean:
-	-rm -rf $(OBJS) evFTPSrv *~
+	-rm -rf $(OBJS) $(BIN) *~

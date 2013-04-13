@@ -37,5 +37,13 @@ SET (EXTRA_LIBS
    -lev
 )
 
+SET (CLIENT_SRC_LIST
+    client.c
+)
+
+# evFTPSrv
 add_executable (evFTPSrv ${SRC_LIST})
 target_link_libraries (evFTPSrv ${EXTRA_LIBS})
+
+# evFTPClient
+add_executable (evFTPClient ${CLIENT_SRC_LIST})
