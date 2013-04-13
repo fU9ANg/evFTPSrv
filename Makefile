@@ -13,7 +13,7 @@ CC          = ccache gcc
 CPP         = ccache g++
 
 # Binary
-BIN         = evFTPSrv
+BIN         = evFTPSrv evFTPClient
 
 # Objects
 OBJS        = d2FTPTask.o       \
