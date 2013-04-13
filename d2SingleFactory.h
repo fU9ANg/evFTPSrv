@@ -23,6 +23,9 @@ class d2SingleFactory
         D2TASKQUEUE m_sendQueue;
         d2MemZone <d2MemBlock > m_memZone;
 
+        static int recvData (int fd, void* buffer, unsigned int len);
+        static int sendData (int fd, void* buffer, unsigned int len);
+
     private:
         d2SingleFactory ();
         static class d2SingleFactory* m_staticObject;
