@@ -16,6 +16,7 @@ class d2FTPTask : public d2Task
         d2FTPTask ()
         {
         }
+
         ~d2FTPTask () {};
         virtual int Execute (void* data);
 
