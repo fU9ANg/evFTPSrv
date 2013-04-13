@@ -4,7 +4,8 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
-D2SINGLEFACTORY	d2SingleFactory.h	31;"	d
+CON_NUM	client.c	14;"	d	file:
+D2SINGLEFACTORY	d2SingleFactory.h	34;"	d
 D2TASKQUEUE	d2Task.h	/^typedef d2Queue <d2MemBlock*> D2TASKQUEUE;$/;"	t
 D2TASKQUEUE	d2ThreadPool.h	/^    typedef d2Queue<d2Task*> D2TASKQUEUE;$/;"	t	class:d2ThreadPool
 D2THREADLIST	d2ThreadPool.h	/^    typedef list <pthread_t> D2THREADLIST;$/;"	t	class:d2ThreadPool
@@ -16,7 +17,11 @@ MAXFD	d2Define.h	35;"	d
 MEMBLOCKNUM	d2MemZone.h	12;"	d
 MEMBLOCKSIZE	d2MemBlock.h	11;"	d
 MSG_HEAD	d2Define.h	/^}   MSG_HEAD;$/;"	t	typeref:struct:sRecvData
+MSG_TEST	client.c	/^}   MSG_TEST;$/;"	t	typeref:struct:sMsgTest	file:
+MSG_TEST_LEN	client.c	23;"	d	file:
 QUEUEBLOCK	d2MemZone.h	/^    typedef queue<T*> QUEUEBLOCK;$/;"	t	class:d2MemZone
+SERV_IP	client.c	12;"	d	file:
+SERV_PORT	client.c	13;"	d	file:
 SIGINTERNAL	d2Define.h	38;"	d
 TIMEOUT	d2Define.h	36;"	d
 _D2_DEFINE_H	d2Define.h	7;"	d
@@ -58,6 +63,7 @@ deLock	d2MutexLock.h	/^        void deLock (void)$/;"	f	class:d2MutexLock
 enLock	d2MutexLock.h	/^        void enLock (void)$/;"	f	class:d2MutexLock
 ev_io_info	d2EvLoopTask.h	/^typedef struct ev_io_info {$/;"	s
 ev_io_info	d2EvLoopTask.h	/^}   ev_io_info;$/;"	t	typeref:struct:ev_io_info
+exit_flag	client.c	/^int exit_flag = 0;$/;"	v
 fd	d2EvLoopTask.h	/^        struct ev_io*   fd;$/;"	m	struct:ev_io_info	typeref:struct:ev_io_info::ev_io
 free	d2MemZone.h	/^        bool free (T* t)$/;"	f	class:d2MemZone
 getClientCount	d2EvLoopTask.cpp	/^int d2EvLoopTask::getClientCount (void)$/;"	f	class:d2EvLoopTask
@@ -73,6 +79,7 @@ getUsedSize	d2MemBlock.cpp	/^unsigned int d2MemBlock::getUsedSize (void)$/;"	f	c
 handleAccept	d2EvLoopTask.cpp	/^void d2EvLoopTask::handleAccept (struct ev_loop* l, ev_io* w, int revents)$/;"	f	class:d2EvLoopTask
 handleRecv	d2EvLoopTask.cpp	/^void d2EvLoopTask::handleRecv (struct ev_loop* l, ev_io* w, int revents)$/;"	f	class:d2EvLoopTask
 handleTimeOut	d2EvLoopTask.cpp	/^void d2EvLoopTask::handleTimeOut(struct ev_loop* l, struct ev_timer* t, int revents)$/;"	f	class:d2EvLoopTask
+iLen	client.c	/^    int iLen;$/;"	m	struct:sMsgTest	file:
 iLen	d2Define.h	/^    unsigned int iLen;$/;"	m	struct:sRecvData
 inQueue	d2Queue.h	/^        bool inQueue (TYPE t)$/;"	f	class:d2Queue
 initInetAddr	d2EvLoopTask.cpp	/^int d2EvLoopTask::initInetAddr (void)$/;"	f	class:d2EvLoopTask
@@ -123,13 +130,18 @@ m_threadCount	d2ThreadPool.h	/^        unsigned int    m_threadCount;$/;"	m	clas
 m_threadList	d2ThreadPool.h	/^        D2THREADLIST    m_threadList;$/;"	m	class:d2ThreadPool
 m_usedSize	d2MemBlock.h	/^        unsigned int    m_usedSize;$/;"	m	class:d2MemBlock
 main	Main.cpp	/^int main (int argc, char** argv)$/;"	f
+main	client.c	/^int main(int argc, char* argv[]){$/;"	f
 malloc	d2MemZone.h	/^        T* malloc (void)$/;"	f	class:d2MemZone
+message	client.c	/^    char message[128];$/;"	m	struct:sMsgTest	file:
 outQueue	d2Queue.h	/^        bool outQueue (TYPE& out, unsigned int iTimeOut)$/;"	f	class:d2Queue
 pData	d2Define.h	/^    void* pData () {$/;"	f	struct:sRecvData
 reSet	d2MemBlock.cpp	/^void d2MemBlock::reSet (void)$/;"	f	class:d2MemBlock
 reSize	d2ThreadPool.cpp	/^bool d2ThreadPool::reSize (unsigned int num)$/;"	f	class:d2ThreadPool
+recvData	d2SingleFactory.cpp	/^int d2SingleFactory::recvData (int fd, void* buffer, unsigned int len)$/;"	f	class:d2SingleFactory
 runAll	d2ThreadPool.cpp	/^bool d2ThreadPool::runAll ()$/;"	f	class:d2ThreadPool
+sMsgTest	client.c	/^typedef struct sMsgTest$/;"	s	file:
 sRecvData	d2Define.h	/^typedef struct sRecvData$/;"	s
+sendData	d2SingleFactory.cpp	/^int d2SingleFactory::sendData (int fd, void* buffer, unsigned int len)$/;"	f	class:d2SingleFactory
 setFd	d2MemBlock.cpp	/^void d2MemBlock::setFd(int fd)$/;"	f	class:d2MemBlock
 setIndex	d2MemBlock.cpp	/^void d2MemBlock::setIndex (unsigned int i)$/;"	f	class:d2MemBlock
 setIsUsed	d2MemBlock.cpp	/^void d2MemBlock::setIsUsed (bool b)$/;"	f	class:d2MemBlock
@@ -139,6 +151,7 @@ setReuseAddr	d2EvLoopTask.cpp	/^void d2EvLoopTask::setReuseAddr(int fd)$/;"	f	cl
 setSize	d2MemBlock.cpp	/^void d2MemBlock::setSize (unsigned int i)$/;"	f	class:d2MemBlock
 sig1	Main.cpp	/^void sig1 (int sig)$/;"	f
 sigHandler	d2ThreadPool.cpp	/^void d2ThreadPool::sigHandler (int sig)$/;"	f	class:d2ThreadPool
+sig_handler	client.c	/^void sig_handler (int sig)$/;"	f
 stopPool	d2ThreadPool.cpp	/^bool d2ThreadPool::stopPool (void)$/;"	f	class:d2ThreadPool
 threadFunc	d2ThreadPool.cpp	/^void* d2ThreadPool::threadFunc (void* data)$/;"	f	class:d2ThreadPool
 ~d2EvLoopTask	d2EvLoopTask.cpp	/^d2EvLoopTask::~d2EvLoopTask ()$/;"	f	class:d2EvLoopTask
