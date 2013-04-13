@@ -42,9 +42,11 @@ using namespace std;
 typedef struct sRecvData
 {
     unsigned int iLen;
-    void* pData () {
-        return this+1;
+    void* pData ()
+    {
+        return (this + 1);
     };
+
 }   MSG_HEAD;
 
 #endif //_D2_DEFINE_H
