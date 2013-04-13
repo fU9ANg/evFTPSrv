@@ -13,7 +13,9 @@
 #include "d2SingleFactory.h"
 #include "d2Queue.h"
 
-typedef struct ev_io_info {
+// define libev io information
+typedef struct ev_io_info
+{
     public:
         struct ev_io*   fd;
         ev_tstamp       lasttime;
