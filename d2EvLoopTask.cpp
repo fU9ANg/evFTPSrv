@@ -112,42 +112,40 @@ void d2EvLoopTask::handleAccept (struct ev_loop* l, ev_io* w, int revents)
 */
 void d2EvLoopTask::handleRecv (struct ev_loop* l, ev_io* w, int revents)
 {
-    cout << __FILE__ << __LINE__ << "herhehrehrhehrherhehrherhehrherh" << endl;
-#if 0
     d2MemBlock* block = D2SINGLEFACTORY->m_memZone.malloc ();
-    if (block == NULL) {
-        cout << "out of memory" << endl;
+    if (block == NULL)
+    {
+        cout << "MALLOC-ERROR: out of memory" << endl;
+        usleep (100);
         return;
     }
 
-    cout << "here1..................." << endl;
+#if 1
+    int recv_len = 0;
+
     // packet header
-    int i = recv (w->fd, block->data(), sizeof (int), 0);
-    if (sizeof(int) != i) {
-        cout << w->fd <<":recviced header error! actually received len = "<< i <<endl;
+    recv_len = D2SINGLEFACTORY->recvData (w->fd, block->data(), sizeof (int));
+    if (recv_len != sizeof (int))
+    {
+        cout << "[Warning]: Packet header length-" << sizeof (int) \
+             << ", actually received length-" << recv_len <<endl;
         d2EvLoopTask::closeFd(w->fd);
         return;
     }
 
+    int *len = (int*)block->data();
     // packet body
-    int *p = (int *)block->data();
-    i = recv (w->fd, (char*)block->data () + sizeof (int), *p - sizeof (int), 0);
-    if ((*p - sizeof (int)) != (unsigned int)i) {
-        cout << "FD=" << w->fd << ": len=" << *p << ", actually recviced len=" << i << endl;
+    recv_len = D2SINGLEFACTORY->recvData (w->fd, (char*)block->data()+sizeof(int), *len-sizeof(int));
+    if ((*len - sizeof (int)) != (unsigned int)recv_len)
+    {
+        cout << "FD=" << w->fd << ": length=" << *len - sizeof (int) << \
+                ", actually recviced length=" << recv_len << endl;
         d2EvLoopTask::closeFd (w->fd);
         return;
     }
 
-    // TODO:
-    //d2EvLoopTask::m_TaskQueue.inQueue (block);    // OK
-    //D2SINGLEFACTORY->m_recvQueue.inQueue (block); // OK
-    //d2DispatchTask::m_TaskQueue.inQueue (block);
-    //block->reSet ();
-    //D2SINGLEFACTORY->m_memZone.free (block);
-
     d2EvLoopTask::m_ioArray[w->fd].lasttime = ev_time ();
     block->setFd (w->fd);
-    cout << "Recvice data from client, FD=" << w->fd << endl;
     D2SINGLEFACTORY->m_recvQueue.inQueue (block);
 #endif
     return;
@@ -161,10 +159,13 @@ void d2EvLoopTask::handleRecv (struct ev_loop* l, ev_io* w, int revents)
 void d2EvLoopTask::handleTimeOut(struct ev_loop* l, struct ev_timer* t, int revents)
 {
     ev_tstamp now = ev_time ();
-    for (register int i=0; i<MAXFD; ++i) {
-        if (m_ioArray[i].fd != NULL) {
-            if (TIMEOUT < now - m_ioArray[i].lasttime) {
-                //d2EvLoopTask::closeFd (i);
+    for (register int i=0; i<MAXFD; ++i)
+    {
+        if (m_ioArray[i].fd != NULL)
+        {
+            if (TIMEOUT < now - m_ioArray[i].lasttime)
+            {
+                d2EvLoopTask::closeFd (i);
             }
         }
     }
