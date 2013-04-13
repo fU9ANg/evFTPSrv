@@ -112,14 +112,15 @@ void d2EvLoopTask::handleAccept (struct ev_loop* l, ev_io* w, int revents)
 */
 void d2EvLoopTask::handleRecv (struct ev_loop* l, ev_io* w, int revents)
 {
-    cout << "herhehrehrhehrherhehrherhehrherh" << endl;
-
+    cout << __FILE__ << __LINE__ << "herhehrehrhehrherhehrherhehrherh" << endl;
+#if 0
     d2MemBlock* block = D2SINGLEFACTORY->m_memZone.malloc ();
     if (block == NULL) {
         cout << "out of memory" << endl;
         return;
     }
 
+    cout << "here1..................." << endl;
     // packet header
     int i = recv (w->fd, block->data(), sizeof (int), 0);
     if (sizeof(int) != i) {
@@ -148,7 +149,7 @@ void d2EvLoopTask::handleRecv (struct ev_loop* l, ev_io* w, int revents)
     block->setFd (w->fd);
     cout << "Recvice data from client, FD=" << w->fd << endl;
     D2SINGLEFACTORY->m_recvQueue.inQueue (block);
-
+#endif
     return;
 }
 
@@ -163,7 +164,7 @@ void d2EvLoopTask::handleTimeOut(struct ev_loop* l, struct ev_timer* t, int reve
     for (register int i=0; i<MAXFD; ++i) {
         if (m_ioArray[i].fd != NULL) {
             if (TIMEOUT < now - m_ioArray[i].lasttime) {
-                d2EvLoopTask::closeFd (i);
+                //d2EvLoopTask::closeFd (i);
             }
         }
     }
