@@ -4,8 +4,8 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
-CON_NUM	client.c	14;"	d	file:
-D2SINGLEFACTORY	d2SingleFactory.h	34;"	d
+CON_NUM	client.c	20;"	d	file:
+D2SINGLEFACTORY	d2SingleFactory.h	41;"	d
 D2TASKQUEUE	d2Task.h	/^typedef d2Queue <d2MemBlock*> D2TASKQUEUE;$/;"	t
 D2TASKQUEUE	d2ThreadPool.h	/^    typedef d2Queue<d2Task*> D2TASKQUEUE;$/;"	t	class:d2ThreadPool
 D2THREADLIST	d2ThreadPool.h	/^    typedef list <pthread_t> D2THREADLIST;$/;"	t	class:d2ThreadPool
@@ -18,10 +18,10 @@ MEMBLOCKNUM	d2MemZone.h	12;"	d
 MEMBLOCKSIZE	d2MemBlock.h	11;"	d
 MSG_HEAD	d2Define.h	/^}   MSG_HEAD;$/;"	t	typeref:struct:sRecvData
 MSG_TEST	client.c	/^}   MSG_TEST;$/;"	t	typeref:struct:sMsgTest	file:
-MSG_TEST_LEN	client.c	23;"	d	file:
+MSG_TEST_LEN	client.c	28;"	d	file:
 QUEUEBLOCK	d2MemZone.h	/^    typedef queue<T*> QUEUEBLOCK;$/;"	t	class:d2MemZone
-SERV_IP	client.c	12;"	d	file:
-SERV_PORT	client.c	13;"	d	file:
+SERV_IP	client.c	18;"	d	file:
+SERV_PORT	client.c	19;"	d	file:
 SIGINTERNAL	d2Define.h	38;"	d
 TIMEOUT	d2Define.h	36;"	d
 _D2_DEFINE_H	d2Define.h	7;"	d
@@ -61,7 +61,7 @@ d2ThreadPool	d2ThreadPool.h	/^class d2ThreadPool$/;"	c
 data	d2MemBlock.cpp	/^void* d2MemBlock::data (void)$/;"	f	class:d2MemBlock
 deLock	d2MutexLock.h	/^        void deLock (void)$/;"	f	class:d2MutexLock
 enLock	d2MutexLock.h	/^        void enLock (void)$/;"	f	class:d2MutexLock
-ev_io_info	d2EvLoopTask.h	/^typedef struct ev_io_info {$/;"	s
+ev_io_info	d2EvLoopTask.h	/^typedef struct ev_io_info$/;"	s
 ev_io_info	d2EvLoopTask.h	/^}   ev_io_info;$/;"	t	typeref:struct:ev_io_info
 exit_flag	client.c	/^int exit_flag = 0;$/;"	v
 fd	d2EvLoopTask.h	/^        struct ev_io*   fd;$/;"	m	struct:ev_io_info	typeref:struct:ev_io_info::ev_io
@@ -134,7 +134,7 @@ main	client.c	/^int main(int argc, char* argv[]){$/;"	f
 malloc	d2MemZone.h	/^        T* malloc (void)$/;"	f	class:d2MemZone
 message	client.c	/^    char message[128];$/;"	m	struct:sMsgTest	file:
 outQueue	d2Queue.h	/^        bool outQueue (TYPE& out, unsigned int iTimeOut)$/;"	f	class:d2Queue
-pData	d2Define.h	/^    void* pData () {$/;"	f	struct:sRecvData
+pData	d2Define.h	/^    void* pData ()$/;"	f	struct:sRecvData
 reSet	d2MemBlock.cpp	/^void d2MemBlock::reSet (void)$/;"	f	class:d2MemBlock
 reSize	d2ThreadPool.cpp	/^bool d2ThreadPool::reSize (unsigned int num)$/;"	f	class:d2ThreadPool
 recvData	d2SingleFactory.cpp	/^int d2SingleFactory::recvData (int fd, void* buffer, unsigned int len)$/;"	f	class:d2SingleFactory
