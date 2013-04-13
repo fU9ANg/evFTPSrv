@@ -21,14 +21,18 @@ int d2FTPTask::Execute (void* data)
             continue;
         }
 
-#if 1
-        cout << "d2FTPTask......................:" <<
-                 pthread_self ()<< endl;
+        cout << "---------------- Task Execute ----------------" << endl;
         cout << "RecvData: " << (char* )((char *)block->data() + sizeof (int)) << endl;
-        cout << "RecvLen: " <<  (((MSG_HEAD*) block->data())->iLen) << endl;
+        cout << "RecvLen : " <<  (((MSG_HEAD*) block->data())->iLen) << endl << endl;
 
-
-
+#ifdef _ONLY_TEST
+        block->reSet ();
+        D2SINGLEFACTORY->m_memZone.free (block);
+#else
+        // TODO:
+        // here: add your code please.
+        //
+#if 0
         d2MemBlock* pblock = D2SINGLEFACTORY->m_memZone.malloc ();
         if (pblock == NULL) {
             cout << "d2FTPTask::Execute: out of memory\n";
@@ -43,12 +47,8 @@ int d2FTPTask::Execute (void* data)
         pblock->setSize (sendData->iLen);
         D2SINGLEFACTORY->m_sendQueue.inQueue (pblock);
 #endif
-
-        block->reSet ();
-        //D2SINGLEFACTORY->m_memZone.free (block);
-        D2SINGLEFACTORY->m_memZone.free (block);
-
-        sleep (1);
+        usleep (100);
+#endif
     }
     return 0;
 }
