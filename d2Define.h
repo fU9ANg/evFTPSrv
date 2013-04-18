@@ -31,6 +31,7 @@
 #include <signal.h>
 #include <ev.h>
 #include <fcntl.h>
+#include <sys/select.h>
 
 #define MAXFD       1024
 #define TIMEOUT     10
