@@ -34,13 +34,12 @@ class d2SelectLoopTask : public d2Task
         static void handleRecv   (int recvFd);
         static void handleTimeOut(int recvFd);
 
-        static void setNonBlock (int fd);
-        static void setNodelay  (int fd);
-        static void setReuseAddr(int fd);
-        static void closeFd     (int fd);
+        static void setNonBlock  (int fd);
+        static void setNodelay   (int fd);
+        static void setReuseAddr (int fd);
+        static void closeFd      (int fd);
 
     public:
-        static struct ev_loop* m_Loop;
         static struct ev_io_info m_ioArray[MAXFD];
         static D2TASKQUEUE m_TaskQueue;
 
