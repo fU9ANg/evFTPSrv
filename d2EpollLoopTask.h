@@ -44,6 +44,7 @@ class d2EpollLoopTask : public d2Task
         static struct epoll_event m_ev;
         static struct epoll_event m_events[MAX_EVENTS];
         static int    m_epollFd;
+        static int    m_listenFd;
         static struct ev_io_info m_ioArray[MAXFD];
         static D2TASKQUEUE m_TaskQueue;
 
@@ -51,7 +52,6 @@ class d2EpollLoopTask : public d2Task
         static int  m_clientCount;
         string m_Ip;
         int m_Port;
-        int m_listenFd;
         int initInetAddr (void);
 };
 

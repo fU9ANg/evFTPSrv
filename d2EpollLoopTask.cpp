@@ -8,9 +8,13 @@
 #include "d2EpollLoopTask.h"
 
 struct ev_io_info d2EpollLoopTask::m_ioArray[MAXFD];
-struct ev_loop* d2EpollLoopTask::m_Loop = NULL;
 D2TASKQUEUE d2EpollLoopTask::m_TaskQueue;
 int d2EpollLoopTask::m_clientCount = 0;
+struct epoll_event d2EpollLoopTask::m_ev;
+struct epoll_event d2EpollLoopTask::m_events[MAX_EVENTS];
+int d2EpollLoopTask::m_epollFd = 0;
+int d2EpollLoopTask::m_listenFd = 0;
+
 
 /*
 =====================
@@ -84,8 +88,8 @@ int d2EpollLoopTask::Execute (void* data)
         }
 
         for (int n=0; n<nfds; ++n) {
-            if (m_events[n].data.fd == listenFd) {
-                handleAccept (...);
+            if (m_events[n].data.fd == m_listenFd) {
+                handleAccept (m_listenFd);
             }
             else {
                 handleRecv (m_events[n].data.fd);
@@ -166,7 +170,7 @@ void d2EpollLoopTask::handleRecv (int recvFd)
     recv_len = D2SINGLEFACTORY->recvData (recvFd, (char*)block->data()+sizeof(int), *len-sizeof(int));
     if ((*len - sizeof (int)) != (unsigned int)recv_len)
     {
-        cout << "FD=" << w->fd << ": length=" << *len - sizeof (int) << \
+        cout << "FD=" << recvFd << ": length=" << *len - sizeof (int) << \
                 ", actually recviced length=" << recv_len << endl;
         block->reSet ();
         D2SINGLEFACTORY->m_memZone.free (block);
@@ -186,7 +190,7 @@ void d2EpollLoopTask::handleRecv (int recvFd)
   d2EpollLoopTask::handleTimeOut ()
 =====================
 */
-void d2EpollLoopTask::handleTimeOut ()
+void d2EpollLoopTask::handleTimeOut (int i)
 {
     time_t now = time (NULL);
     for (register int i=0; i<MAXFD; ++i)

@@ -8,7 +8,6 @@
 #include "d2SelectLoopTask.h"
 
 struct ev_io_info d2SelectLoopTask::m_ioArray[MAXFD];
-struct ev_loop* d2SelectLoopTask::m_Loop = NULL;
 D2TASKQUEUE d2SelectLoopTask::m_TaskQueue;
 int d2SelectLoopTask::m_clientCount = 0;
 
@@ -55,20 +54,29 @@ d2SelectLoopTask::~d2SelectLoopTask ()
 
 /*
 =====================
+  d2SelectLoopTask::InIoArray()
+=====================
+*/
+int d2SelectLoopTask::InIoArray (int fd)
+{
+    return (0);
+}
+
+/*
+=====================
   d2SelectLoopTask::Execute ()
 =====================
 */
 int d2SelectLoopTask::Execute (void* data)
 {
+    fd_set readfds, testfds;
+    int    result, connfd, fd;
     // initialize read fds array and add server-fd to that..
     FD_ZERO (&readfds);
     FD_SET (m_listenFd, &readfds);
 
     // loop and accept request from clients
     while (1) {
-        char ch;
-        int fd;
-        int nread;
         testfds = readfds;
 
         printf ("server waiting...\n");
@@ -86,12 +94,13 @@ int d2SelectLoopTask::Execute (void* data)
                 // is listen-fd
                 if (fd == m_listenFd)
                 {
-                    FD_SET (handleAccept (m_listenFd), &readfds);
+                    connfd = handleAccept (m_listenFd);
+                    FD_SET (connfd, &readfds);
                 }
                 // is client-fd
-                else if (fdInIoArray (fd, IoArray))
+                else if (InIoArray (fd))
                 {
-                    if (handleRecv (fd, ...) == 1)
+                    if (handleRecv (fd) == 1)
                     {
                         FD_CLR (fd, &readfds);
                     }
@@ -106,7 +115,7 @@ int d2SelectLoopTask::Execute (void* data)
   d2SelectLoopTask::handleAccept ()
 =====================
 */
-void d2SelectLoopTask::handleAccept (int listenFd)
+int d2SelectLoopTask::handleAccept (int listenFd)
 {
     struct sockaddr_in clientAddr;
     socklen_t sockLen = 0;
@@ -116,7 +125,8 @@ void d2SelectLoopTask::handleAccept (int listenFd)
     if (newFd < 0)
     {
         cout << "ERROR: in accept ()\n";
-        return;
+        abort ();
+        return (-1);
     }
     d2SelectLoopTask::setNonBlock (newFd);
     d2SelectLoopTask::setReuseAddr(newFd);
@@ -126,7 +136,7 @@ void d2SelectLoopTask::handleAccept (int listenFd)
     d2SelectLoopTask::m_ioArray[newFd].lasttime = time (NULL);
 
     d2SelectLoopTask::m_clientCount++;
-    return;
+    return (newFd);
 }
 
 /*
@@ -134,13 +144,13 @@ void d2SelectLoopTask::handleAccept (int listenFd)
   d2SelectLoopTask::handleRecv
 =====================
 */
-void d2SelectLoopTask::handleRecv (int recvFd)
+int d2SelectLoopTask::handleRecv (int recvFd)
 {
     d2MemBlock* block = D2SINGLEFACTORY->m_memZone.malloc ();
     if (block == NULL)
     {
         cout << "MALLOC-ERROR: out of memory" << endl;
-        return;
+        return (-1);
     }
 
 #if 1
@@ -155,7 +165,7 @@ void d2SelectLoopTask::handleRecv (int recvFd)
         block->reSet ();
         D2SINGLEFACTORY->m_memZone.free (block);
         d2SelectLoopTask::closeFd(recvFd);
-        return;
+        return (-1);
     }
 
     int *len = (int*)block->data();
@@ -163,19 +173,19 @@ void d2SelectLoopTask::handleRecv (int recvFd)
     recv_len = D2SINGLEFACTORY->recvData (recvFd, (char*)block->data()+sizeof(int), *len-sizeof(int));
     if ((*len - sizeof (int)) != (unsigned int)recv_len)
     {
-        cout << "FD=" << w->fd << ": length=" << *len - sizeof (int) << \
+        cout << "FD=" << recvFd << ": length=" << *len - sizeof (int) << \
                 ", actually recviced length=" << recv_len << endl;
         block->reSet ();
         D2SINGLEFACTORY->m_memZone.free (block);
         d2SelectLoopTask::closeFd (recvFd);
-        return;
+        return (-1);
     }
 
     d2SelectLoopTask::m_ioArray[recvFd].lasttime = time (NULL);
     block->setFd (recvFd);
     D2SINGLEFACTORY->m_recvQueue.inQueue (block);
 #endif
-    return;
+    return (1);
 }
 
 /*
@@ -183,7 +193,7 @@ void d2SelectLoopTask::handleRecv (int recvFd)
   d2SelectLoopTask::handleTimeOut ()
 =====================
 */
-void d2SelectLoopTask::handleTimeOut ()
+void d2SelectLoopTask::handleTimeOut (int i)
 {
     time_t now = time (NULL);
     for (register int i=0; i<MAXFD; ++i)

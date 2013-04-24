@@ -29,9 +29,10 @@ class d2SelectLoopTask : public d2Task
         ~d2SelectLoopTask ();
 
         virtual int Execute (void* data);
-        int  getClientCount ();
-        static void handleAccept (int listenFd);
-        static void handleRecv   (int recvFd);
+        int InIoArray (int fd);
+        int getClientCount ();
+        static int  handleAccept (int listenFd);
+        static int  handleRecv   (int recvFd);
         static void handleTimeOut(int recvFd);
 
         static void setNonBlock  (int fd);
