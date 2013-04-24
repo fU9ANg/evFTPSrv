@@ -7,7 +7,7 @@
 #
 
 # Which c++ compiler
-CC          = ccache gcc
+CC          = ccache cc
 
 # Which c compiler
 CPP         = ccache g++
@@ -19,6 +19,8 @@ BIN         = evFTPSrv evFTPClient
 OBJS        = d2FTPTask.o       \
               d2SendTask.o      \
               d2EvLoopTask.o    \
+              d2SelectLoopTask.o\
+              d2EpollLoopTask.o \
               d2ThreadPool.o    \
               d2MemBlock.o      \
               d2SingleFactory.o \
