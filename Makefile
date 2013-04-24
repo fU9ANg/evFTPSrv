@@ -16,14 +16,14 @@ CPP         = ccache g++
 BIN         = evFTPSrv evFTPClient
 
 # Objects
-OBJS        = d2FTPTask.o       \
-              d2SendTask.o      \
-              d2EvLoopTask.o    \
-              d2SelectLoopTask.o\
-              d2EpollLoopTask.o \
-              d2ThreadPool.o    \
-              d2MemBlock.o      \
-              d2SingleFactory.o \
+OBJS        = d2FTPTask.o       	\
+              d2SendTask.o      	\
+              d2ThreadPool.o    	\
+              d2MemBlock.o      	\
+              d2SingleFactory.o 	\
+              d2EvLoopTask.o    	\
+              d2EpollLoopTask.o 	\
+              d2SelectLoopTask.o	\
               Main.o
 
 CLIENTOBJS  = client.o
