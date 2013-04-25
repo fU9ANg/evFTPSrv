@@ -59,7 +59,10 @@ d2SelectLoopTask::~d2SelectLoopTask ()
 */
 int d2SelectLoopTask::InIoArray (int fd)
 {
-    return (0);
+    if (d2SelectLoopTask::m_ioArray[fd].fd == fd)
+        return (1);
+    else
+        return (0);
 }
 
 /*

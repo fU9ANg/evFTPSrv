@@ -17,8 +17,8 @@
 typedef struct ev_io_info
 {
     public:
-        int             fd;
-        time_t          lasttime;
+        int              fd;
+        time_t           lasttime;
 }   ev_io_info;
 
 class d2SelectLoopTask : public d2Task
@@ -47,9 +47,10 @@ class d2SelectLoopTask : public d2Task
     private:
         static int  m_clientCount;
         string m_Ip;
-        int m_Port;
-        int m_listenFd;
-        int initInetAddr (void);
+        int    m_Port;
+        int    m_listenFd;
+
+        int    initInetAddr (void);
 };
 
 
